@@ -1,40 +1,40 @@
 clear all
 clc
 
-% 4. ¡®caribou.tif¡¯ ¿µ»ó¿¡ ´ëÇØ ¾Æ·¡¿¡ ¾Æ·¡ÀÇ ¹®Á¦¸¦ ÇØ°áÇÏ¼¼¿ä.
+% 4. â€˜caribou.tifâ€™ ì˜ìƒì— ëŒ€í•´ ì•„ëž˜ì— ì•„ëž˜ì˜ ë¬¸ì œë¥¼ í•´ê²°í•˜ì„¸ìš”.
 img = imread("sample_images/caribou.tif");
 
-% (1) ÀÌ»óÀûÀÎ Àú¿ªÅë°ú ÇÊÅÍ¸µÀ» ÁÖÆÄ¼ö ¿µ¿ª¿¡¼­ ¼öÇàÇÏ¼¼¿ä. µð½ºÇÃ·¹ÀÌÇÒ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù: ¿øº»
-% ¿µ»ó, ÇÊÅÍ, ÁÖÆÄ¼ö µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú, ¿µ»ó µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú (°­ÀÇÀÚ·á 47~49ÂÊ)
-% [x, y] = meshgrid(-128:127, -128:127);
-% z = sqrt(x.^2 + y.^2);
-% c = (z<15);
-% cf = fftshift(fft2(img));
-% cfl = cf.*c;
-% cfli = ifft2(cfl);
-% 
-% figure(1); imshow(img);
-% figure(2); imshow(c);
-% figure(3); fftshow(cfl,'log');
-% figure(4); fftshow(cfli,'abs');
+% (1) ì´ìƒì ì¸ ì €ì—­í†µê³¼ í•„í„°ë§ì„ ì£¼íŒŒìˆ˜ ì˜ì—­ì—ì„œ ìˆ˜í–‰í•˜ì„¸ìš”. ë””ìŠ¤í”Œë ˆì´í•  ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤: ì›ë³¸
+% ì˜ìƒ, í•„í„°, ì£¼íŒŒìˆ˜ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼, ì˜ìƒ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼ (ê°•ì˜ìžë£Œ 47~49ìª½)
+[x, y] = meshgrid(-128:127, -128:127);
+z = sqrt(x.^2 + y.^2);
+c = (z<15);
+cf = fftshift(fft2(img));
+cfl = cf.*c;
+cfli = ifft2(cfl);
 
-% (2) ÀÌ»óÀûÀÎ °í¿ªÅë°ú ÇÊÅÍ¸µÀ» ÁÖÆÄ¼ö ¿µ¿ª¿¡¼­ ¼öÇàÇÏ¼¼¿ä. µð½ºÇÃ·¹ÀÌÇÒ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù: ¿øº»
-% ¿µ»ó, ÇÊÅÍ, ÁÖÆÄ¼ö µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú, ¿µ»ó µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú (°­ÀÇÀÚ·á 50~52ÂÊ)
-% [x, y] = meshgrid(-128:127, -128:127);
-% z = sqrt(x.^2 + y.^2);
-% c = (z>15);
-% cf = fftshift(fft2(img));
-% cfh = cf.*c;
-% cfhi = ifft2(cfh);
-% 
-% figure(1); imshow(img);
-% figure(2); imshow(c);
-% figure(3); fftshow(cfh,'log');
-% figure(4); fftshow(cfhi,'abs');
+figure(1); imshow(img);
+figure(2); imshow(c);
+figure(3); fftshow(cfl,'log');
+figure(4); fftshow(cfli,'abs');
 
-% (3) °¡¿ì½Ã¾È Àú¿ªÅë°ú ÇÊÅÍ¸µÀ» ÁÖÆÄ¼ö ¿µ¿ª¿¡¼­ ¼öÇàÇÏ¼¼¿ä. µð½ºÇÃ·¹ÀÌÇÒ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù: ¿øº»
-% ¿µ»ó, ÇÊÅÍ, ÁÖÆÄ¼ö µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú, ¿µ»ó µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú (°­ÀÇÀÚ·á 62~63ÂÊ)
-% - °¡¿ì½Ã¾È ÇÊÅÍÀÇ ÃÖ´ë°ªÀ» 1·Î ¸¸µé¾î ÁÖ±â À§ÇØ fspecial·Î ÇÊÅÍ g¸¦ ¸¸µé°í g=g/max(g(:))¸¦ ÇØÁÖ¼¼¿ä.
+% (2) ì´ìƒì ì¸ ê³ ì—­í†µê³¼ í•„í„°ë§ì„ ì£¼íŒŒìˆ˜ ì˜ì—­ì—ì„œ ìˆ˜í–‰í•˜ì„¸ìš”. ë””ìŠ¤í”Œë ˆì´í•  ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤: ì›ë³¸
+% ì˜ìƒ, í•„í„°, ì£¼íŒŒìˆ˜ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼, ì˜ìƒ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼ (ê°•ì˜ìžë£Œ 50~52ìª½)
+[x, y] = meshgrid(-128:127, -128:127);
+z = sqrt(x.^2 + y.^2);
+c = (z>15);
+cf = fftshift(fft2(img));
+cfh = cf.*c;
+cfhi = ifft2(cfh);
+
+figure(1); imshow(img);
+figure(2); imshow(c);
+figure(3); fftshow(cfh,'log');
+figure(4); fftshow(cfhi,'abs');
+
+% (3) ê°€ìš°ì‹œì•ˆ ì €ì—­í†µê³¼ í•„í„°ë§ì„ ì£¼íŒŒìˆ˜ ì˜ì—­ì—ì„œ ìˆ˜í–‰í•˜ì„¸ìš”. ë””ìŠ¤í”Œë ˆì´í•  ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤: ì›ë³¸
+% ì˜ìƒ, í•„í„°, ì£¼íŒŒìˆ˜ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼, ì˜ìƒ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼ (ê°•ì˜ìžë£Œ 62~63ìª½)
+% - ê°€ìš°ì‹œì•ˆ í•„í„°ì˜ ìµœëŒ€ê°’ì„ 1ë¡œ ë§Œë“¤ì–´ ì£¼ê¸° ìœ„í•´ fspecialë¡œ í•„í„° gë¥¼ ë§Œë“¤ê³  g=g/max(g(:))ë¥¼ í•´ì£¼ì„¸ìš”.
 
 g = fspecial('gaussian', 256, 10);
 g = g/max(g(:));
@@ -47,9 +47,9 @@ figure(2); imshow(g);
 figure(3); fftshow(cfg,'log');
 figure(4); fftshow(cfgi,'abs');
 
-% (4) °¡¿ì½Ã¾È °í¿ªÅë°ú ÇÊÅÍ¸µÀ» ÁÖÆÄ¼ö ¿µ¿ª¿¡¼­ ¼öÇàÇÏ¼¼¿ä. µð½ºÇÃ·¹ÀÌÇÒ ³»¿ëÀº ´ÙÀ½°ú °°½À´Ï´Ù: ¿øº»
-% ¿µ»ó, ÇÊÅÍ, ÁÖÆÄ¼ö µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú, ¿µ»ó µµ¸ÞÀÎ¿¡¼­ÀÇ ÇÊÅÍ¸µ °á°ú (°­ÀÇÀÚ·á 65ÂÊ)
-% - °¡¿ì½Ã¾È ÇÊÅÍÀÇ ÃÖ´ë°ªÀ» 1·Î ¸¸µé¾î ÁÖ±â À§ÇØ fspecial·Î ÇÊÅÍ g¸¦ ¸¸µé°í g=g/max(g(:))¸¦ ÇØÁÖ¼¼¿ä.
+% (4) ê°€ìš°ì‹œì•ˆ ê³ ì—­í†µê³¼ í•„í„°ë§ì„ ì£¼íŒŒìˆ˜ ì˜ì—­ì—ì„œ ìˆ˜í–‰í•˜ì„¸ìš”. ë””ìŠ¤í”Œë ˆì´í•  ë‚´ìš©ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤: ì›ë³¸
+% ì˜ìƒ, í•„í„°, ì£¼íŒŒìˆ˜ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼, ì˜ìƒ ë„ë©”ì¸ì—ì„œì˜ í•„í„°ë§ ê²°ê³¼ (ê°•ì˜ìžë£Œ 65ìª½)
+% - ê°€ìš°ì‹œì•ˆ í•„í„°ì˜ ìµœëŒ€ê°’ì„ 1ë¡œ ë§Œë“¤ì–´ ì£¼ê¸° ìœ„í•´ fspecialë¡œ í•„í„° gë¥¼ ë§Œë“¤ê³  g=g/max(g(:))ë¥¼ í•´ì£¼ì„¸ìš”.
 
 g = fspecial('gaussian', 256, 30);
 g = 1 - g/max(g(:));
@@ -62,4 +62,4 @@ figure(2); imshow(g);
 figure(3); fftshow(cfg,'log');
 figure(4); fftshow(cfgi,'abs');
 
-% (5) Àú¿ªÅë°ú ÇÊÅÍ¸µ°ú °í¿ªÅë°ú ÇÊÅÍ¸µÀÇ È¿°ú¿¡ ´ëÇØ °¢°¢ ÇÑ ÁÙ ÀÌ»óÀ¸·Î ¼³¸íÇÏ¼¼¿ä.
+% (5) ì €ì—­í†µê³¼ í•„í„°ë§ê³¼ ê³ ì—­í†µê³¼ í•„í„°ë§ì˜ íš¨ê³¼ì— ëŒ€í•´ ê°ê° í•œ ì¤„ ì´ìƒìœ¼ë¡œ ì„¤ëª…í•˜ì„¸ìš”.
